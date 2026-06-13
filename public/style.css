@@ -985,3 +985,11 @@ button svg {
   .links-table td.muted { display: block; text-align: center; }
   .links-table td.muted::before { display: none; }
 }
+
+/* main landmark wrapper — preserve the centered column layout */
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
