@@ -3,8 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shortly — fast, friendly URL shortener</title>
+
+  <!-- Primary SEO -->
+  <title>Free URL Shortener — Shorten Long Links Fast | Shortly</title>
+  <meta name="description" content="Shortly is a free URL shortener. Paste a long link to get a short, trackable URL with a custom back-half and click stats. Fast, simple, no signup required." />
+  <meta name="keywords" content="url shortener, short url, shorten url, shorten link, link shortener, free url shortener, custom short link, short link generator, tiny url, url short" />
+  <link rel="canonical" href="https://theurlshortner.com/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="author" content="Shortly" />
+
+  <!-- Icons / PWA -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Shortly" />
+  <meta property="og:title" content="Free URL Shortener — Shorten Long Links Fast" />
+  <meta property="og:description" content="Paste a long link, get a short trackable URL with a custom back-half and click stats. Free, no signup required." />
+  <meta property="og:url" content="https://theurlshortner.com/" />
+  <meta property="og:image" content="https://theurlshortner.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free URL Shortener — Shorten Long Links Fast | Shortly" />
+  <meta name="twitter:description" content="Paste a long link, get a short trackable URL with a custom back-half and click stats. Free, no signup required." />
+  <meta name="twitter:image" content="https://theurlshortner.com/og-image.png" />
+
   <link rel="stylesheet" href="/style.css" />
+
+  <!-- Structured data: WebApplication + Organization (SEO/GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Shortly",
+        "url": "https://theurlshortner.com/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web)",
+        "description": "A free URL shortener that turns long links into short, trackable URLs with optional custom codes and click tracking.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Shorten long URLs instantly",
+          "Custom short codes (back-half)",
+          "Click tracking per link",
+          "Personal dashboard to manage links"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "Shortly",
+        "url": "https://theurlshortner.com/",
+        "logo": "https://theurlshortner.com/favicon.svg"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <nav class="nav">
@@ -116,6 +176,52 @@
       </article>
     </div>
   </section>
+
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>What is a URL shortener?</summary>
+        <p>A URL shortener is a tool that turns a long web address into a short, easy-to-share link. When someone opens the short link, they're instantly redirected to the original long URL.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I shorten a URL for free?</summary>
+        <p>Paste your long URL into the box at the top of this page and click <strong>Shorten</strong>. You'll get a short link you can copy and share right away — no signup needed.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I create a custom short link?</summary>
+        <p>Yes. When shortening, enter your own custom code (the "back-half") — 4 to 30 letters, numbers or dashes — to make a branded, memorable link like <code>theurlshortner.com/my-sale</code>.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I track how many people click my link?</summary>
+        <p>Yes. Every short link counts its clicks. Create a free account to see all your links and their click counts in one dashboard.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do short links expire?</summary>
+        <p>No. Your short links stay active and keep redirecting to the original URL.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is Shortly free to use?</summary>
+        <p>Yes, Shortly is completely free to shorten URLs and track clicks.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Structured data: FAQ (AEO / answer engines) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is a URL shortener?", "acceptedAnswer": { "@type": "Answer", "text": "A URL shortener is a tool that turns a long web address into a short, easy-to-share link. When someone opens the short link, they are instantly redirected to the original long URL." } },
+      { "@type": "Question", "name": "How do I shorten a URL for free?", "acceptedAnswer": { "@type": "Answer", "text": "Paste your long URL into the box on the homepage and click Shorten. You get a short link you can copy and share right away, with no signup required." } },
+      { "@type": "Question", "name": "Can I create a custom short link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. When shortening, enter your own custom code (the back-half) of 4 to 30 letters, numbers or dashes to make a branded, memorable link." } },
+      { "@type": "Question", "name": "Can I track how many people click my link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every short link counts its clicks. Create a free account to see all of your links and their click counts in one dashboard." } },
+      { "@type": "Question", "name": "Do short links expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your short links stay active and keep redirecting to the original URL." } },
+      { "@type": "Question", "name": "Is Shortly free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Shortly is completely free to shorten URLs and track clicks." } }
+    ]
+  }
+  </script>
 
   <footer class="footer">
     Built with Shortly · paste, shorten, share.

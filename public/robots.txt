@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /$
+Allow: /login
+Disallow: /api/
+Disallow: /dashboard
+
+# Allow well-known AI / answer-engine crawlers explicitly
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://theurlshortner.com/sitemap.xml

@@ -1,0 +1,24 @@
+# Shortly
+
+> Shortly (https://theurlshortner.com) is a free URL shortener that turns long web
+> addresses into short, shareable, trackable links. Users can optionally choose a
+> custom back-half code and track how many times each link is clicked.
+
+## Key facts
+- Free to use; no sign-up is required to shorten a URL.
+- Custom short codes (the "back-half") can be 4–30 letters, numbers or dashes.
+- Every short link tracks its click count.
+- Short links do not expire.
+- Optional free accounts unlock a dashboard to create, edit, and delete your links.
+- Built with Node.js, Express, and a libSQL/Turso database; hosted on Vercel.
+
+## Common questions
+- What is a URL shortener? A tool that converts a long URL into a short link that redirects to the original address.
+- How do I shorten a URL on Shortly? Paste the long URL on the homepage and click "Shorten"; optionally enter a custom code.
+- Is Shortly free? Yes, shortening URLs is free and needs no account.
+- Can I customize the short link? Yes, you can set a custom back-half code.
+- Can I track clicks? Yes, each link shows its total click count.
+
+## Pages
+- [Home](https://theurlshortner.com/): shorten a URL and see the features.
+- [Sign in / Sign up](https://theurlshortner.com/login): create or access an account.
