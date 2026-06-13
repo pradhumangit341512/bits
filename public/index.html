@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>URL Shortener</title>
+  <title>Shortly — fast, friendly URL shortener</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -12,44 +12,99 @@
     <div class="nav-links" id="nav-links"><!-- filled by JS --></div>
   </nav>
 
-  <main class="card">
-    <h1>Shorten a URL</h1>
-    <p class="subtitle">Paste a long link and get a short one back.</p>
+  <header class="hero">
+    <h1>Short links that <span class="accent">work harder</span>.</h1>
+    <p>Turn long, messy URLs into clean, trackable short links — with your own custom back-half and click stats.</p>
 
-    <form id="shorten-form" autocomplete="off">
-      <input
-        id="url-input"
-        type="url"
-        inputmode="url"
-        placeholder="https://example.com/very/long/link"
-        required
-      />
-      <div class="custom-row">
-        <span class="custom-prefix" id="custom-prefix">/</span>
+    <section class="card">
+      <form id="shorten-form" autocomplete="off">
         <input
-          id="code-input"
-          type="text"
-          placeholder="custom-code (optional)"
-          pattern="[A-Za-z0-9\-]{4,30}"
-          title="4–30 letters, numbers or dashes"
+          id="url-input"
+          type="url"
+          inputmode="url"
+          placeholder="Paste a long URL — https://example.com/very/long/link"
+          required
         />
-      </div>
-      <button type="submit" id="shorten-btn">Shorten</button>
-    </form>
+        <div class="custom-row">
+          <span class="custom-prefix" id="custom-prefix">/</span>
+          <input
+            id="code-input"
+            type="text"
+            placeholder="custom-code (optional)"
+            pattern="[A-Za-z0-9\-]{4,30}"
+            title="4–30 letters, numbers or dashes"
+          />
+        </div>
+        <button type="submit" id="shorten-btn">Shorten</button>
+      </form>
 
-    <p id="error" class="error" hidden></p>
+      <p id="error" class="error" hidden></p>
 
-    <section id="result" class="result" hidden>
-      <div class="short-row">
-        <a id="short-link" class="short-link" href="#" target="_blank" rel="noopener"></a>
-        <button id="copy-btn" type="button">Copy</button>
-      </div>
-      <p class="stat">
-        <span id="clicks">0 clicks</span>
-        <button id="refresh-btn" type="button" class="link-btn">refresh</button>
-      </p>
+      <section id="result" class="result" hidden>
+        <div class="short-row">
+          <a id="short-link" class="short-link" href="#" target="_blank" rel="noopener"></a>
+          <button id="copy-btn" type="button">Copy</button>
+        </div>
+        <p class="stat">
+          <span id="clicks">0 clicks</span>
+          <button id="refresh-btn" type="button" class="link-btn">refresh</button>
+        </p>
+      </section>
     </section>
-  </main>
+  </header>
+
+  <section class="features">
+    <h2>Everything you need to share links with confidence</h2>
+    <p class="lead">Built to make every link cleaner, smarter and easier to manage.</p>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon">✂️</div>
+        <h3>Instant shortening</h3>
+        <p>Paste any long URL and get a tidy short link in one click.</p>
+        <p class="why"><strong>Why it helps:</strong> long links break across lines in chats, emails and texts. Short ones stay clickable and look trustworthy.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Custom back-half</h3>
+        <p>Choose your own code, like <code>/summer-sale</code>, instead of random letters.</p>
+        <p class="why"><strong>Why it helps:</strong> branded, readable links are more memorable and get clicked more often than cryptic ones.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Click tracking</h3>
+        <p>Every link counts its clicks so you can see what's getting attention.</p>
+        <p class="why"><strong>Why it helps:</strong> you learn which links and channels actually drive traffic — no guessing.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">📂</div>
+        <h3>Personal dashboard</h3>
+        <p>All your links in one place — view, copy, edit or delete any of them.</p>
+        <p class="why"><strong>Why it helps:</strong> manage campaigns and links from a single screen instead of losing track of them.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>Editable destinations</h3>
+        <p>Change where a short link points without changing the link itself.</p>
+        <p class="why"><strong>Why it helps:</strong> fix a typo or update a campaign after sharing — the link you posted keeps working.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure accounts</h3>
+        <p>Email + password sign-in with hashed passwords and private sessions.</p>
+        <p class="why"><strong>Why it helps:</strong> your links stay yours — only you can see and manage the links in your account.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Built with Shortly · paste, shorten, share.
+  </footer>
 
   <script src="/app.js"></script>
 </body>
