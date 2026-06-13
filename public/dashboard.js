@@ -60,9 +60,18 @@ function render(links) {
         <td>${l.clicks}</td>
         <td>${fmtDate(l.createdAt)}</td>
         <td class="actions">
-          <button type="button" class="link-btn" data-act="copy">Copy</button>
-          <button type="button" class="link-btn" data-act="edit">Edit</button>
-          <button type="button" class="link-btn danger" data-act="delete">Delete</button>
+          <button type="button" class="link-btn" data-act="copy" title="Copy short link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span class="btn-label">Copy</span>
+          </button>
+          <button type="button" class="link-btn" data-act="edit" title="Edit destination">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span class="btn-label">Edit</span>
+          </button>
+          <button type="button" class="link-btn danger" data-act="delete" title="Delete link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            <span class="btn-label">Delete</span>
+          </button>
         </td>
       </tr>`
     )
@@ -126,10 +135,11 @@ linksBody.addEventListener('click', async (e) => {
 
   if (act === 'copy') {
     const url = row.querySelector('a').textContent;
+    const label = btn.querySelector('.btn-label');
     try {
       await navigator.clipboard.writeText(url);
-      btn.textContent = 'Copied!';
-      setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      label.textContent = 'Copied!';
+      setTimeout(() => (label.textContent = 'Copy'), 1500);
     } catch {
       showError('Could not copy.');
     }

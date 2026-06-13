@@ -554,3 +554,166 @@ button:disabled {
     width: 100%;
   }
 }
+
+/* ---------- professional icons & auth polish ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.brand-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.feature-icon {
+  color: var(--primary);
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* auth card */
+.auth-card {
+  max-width: 440px;
+}
+
+.auth-head {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-logo {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.auth-logo svg {
+  width: 26px;
+  height: 26px;
+}
+
+.auth-head h1 {
+  font-size: 1.45rem;
+}
+
+.auth-head .subtitle {
+  margin-bottom: 0;
+}
+
+/* icon-in-field inputs */
+.field {
+  position: relative;
+  display: block;
+}
+
+.field-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  display: flex;
+  pointer-events: none;
+}
+
+.field-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.field input {
+  width: 100%;
+  padding-left: 2.6rem;
+}
+
+/* "I'm not a robot" verification box */
+.robot-check {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.robot-check.checked {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.robot-check label {
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.robot-badge {
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  color: #cbd5e1;
+  transition: color 0.15s ease;
+}
+
+.robot-check.checked .robot-badge {
+  color: #16a34a;
+}
+
+/* terms / agreement checkbox */
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.check a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.check a:hover {
+  text-decoration: underline;
+}
+
+input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  margin-top: 1px;
+}
+
+/* icon buttons */
+button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.link-btn svg {
+  width: 15px;
+  height: 15px;
+}

@@ -122,12 +122,20 @@ app.post('/api/auth/signup', async (req, res) => {
   try {
     const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
     const password = typeof req.body?.password === 'string' ? req.body.password : '';
+    const confirmPassword = typeof req.body?.confirmPassword === 'string' ? req.body.confirmPassword : undefined;
+    const human = req.body?.human === true;
 
     if (!isValidEmail(email)) {
       return res.status(400).json({ error: 'Please enter a valid email address.' });
     }
     if (password.length < 8 || password.length > 200) {
       return res.status(400).json({ error: 'Password must be 8–200 characters.' });
+    }
+    if (confirmPassword !== undefined && confirmPassword !== password) {
+      return res.status(400).json({ error: 'Passwords do not match.' });
+    }
+    if (!human) {
+      return res.status(400).json({ error: "Please confirm you're not a robot." });
     }
     if (await getUserByEmail(email)) {
       return res.status(409).json({ error: 'An account with that email already exists.' });
