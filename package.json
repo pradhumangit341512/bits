@@ -5,7 +5,11 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "build": "node --check server.js && node --check db.js && node --check session-store.js",
+    "start": "node --env-file-if-exists=.env server.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "license": "MIT",
   "dependencies": {
