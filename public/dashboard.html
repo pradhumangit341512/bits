@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Shortly</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/">🔗 Shortly</a>
+    <div class="nav-links" id="nav-links"><!-- filled by JS --></div>
+  </nav>
+
+  <main class="card card-wide">
+    <h1>Your links</h1>
+
+    <form id="create-form" class="dash-create" autocomplete="off">
+      <input id="url-input" type="url" placeholder="https://example.com/long/link" required />
+      <input id="code-input" type="text" placeholder="custom-code (optional)"
+             pattern="[A-Za-z0-9\-]{4,30}" title="4–30 letters, numbers or dashes" />
+      <button type="submit" id="create-btn">Create</button>
+    </form>
+
+    <p id="error" class="error" hidden></p>
+
+    <div class="table-wrap">
+      <table class="links-table">
+        <thead>
+          <tr>
+            <th>Short URL</th>
+            <th>Destination</th>
+            <th>Clicks</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="links-body">
+          <tr><td colspan="5" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/dashboard.js"></script>
+</body>
+</html>

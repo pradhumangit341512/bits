@@ -1,0 +1,6 @@
+node_modules/
+urls.db
+urls.db-*
+.env
+.env.local
+.vercel

@@ -1,0 +1,18 @@
+{
+  "name": "theurlshortner",
+  "version": "1.0.0",
+  "description": "A simple, fast URL shortener (Express + libSQL) with user accounts.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "nanoid": "^3.3.8"
+  }
+}

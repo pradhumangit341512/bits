@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/">🔗 Shortly</a>
+    <div class="nav-links" id="nav-links"><!-- filled by JS --></div>
+  </nav>
+
+  <main class="card">
+    <h1>Shorten a URL</h1>
+    <p class="subtitle">Paste a long link and get a short one back.</p>
+
+    <form id="shorten-form" autocomplete="off">
+      <input
+        id="url-input"
+        type="url"
+        inputmode="url"
+        placeholder="https://example.com/very/long/link"
+        required
+      />
+      <div class="custom-row">
+        <span class="custom-prefix" id="custom-prefix">/</span>
+        <input
+          id="code-input"
+          type="text"
+          placeholder="custom-code (optional)"
+          pattern="[A-Za-z0-9\-]{4,30}"
+          title="4–30 letters, numbers or dashes"
+        />
+      </div>
+      <button type="submit" id="shorten-btn">Shorten</button>
+    </form>
+
+    <p id="error" class="error" hidden></p>
+
+    <section id="result" class="result" hidden>
+      <div class="short-row">
+        <a id="short-link" class="short-link" href="#" target="_blank" rel="noopener"></a>
+        <button id="copy-btn" type="button">Copy</button>
+      </div>
+      <p class="stat">
+        <span id="clicks">0 clicks</span>
+        <button id="refresh-btn" type="button" class="link-btn">refresh</button>
+      </p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
