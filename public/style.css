@@ -787,3 +787,119 @@ button svg {
   border-radius: 5px;
   font-size: 0.85em;
 }
+
+/* ---------- guides / articles ---------- */
+.guide {
+  width: 100%;
+  max-width: 720px;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.crumbs a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.guide h1 {
+  font-size: 2rem;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.guide-lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin: 0 0 1.75rem;
+  line-height: 1.6;
+}
+
+.guide h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.guide p,
+.guide li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.guide ul,
+.guide ol {
+  padding-left: 1.25rem;
+}
+
+.guide li {
+  margin: 0.35rem 0;
+}
+
+.guide a {
+  color: var(--primary);
+}
+
+.guide code {
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 0.1rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.guide-cta {
+  margin-top: 2rem;
+}
+
+.guide-cta .btn-link {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+}
+
+/* guide index cards */
+.guide-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.guide-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.guide-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.guide-card h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.35rem;
+  color: var(--text);
+}
+
+.guide-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+}

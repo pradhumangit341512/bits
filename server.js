@@ -16,7 +16,7 @@ const BASE_URL = process.env.BASE_URL;
 // Codes that would collide with real routes / static files.
 const RESERVED_CODES = new Set([
   'api', 'login', 'logout', 'signup', 'dashboard', 'style', 'app',
-  'public', 'favicon', 'index', 'admin', 'static',
+  'public', 'favicon', 'index', 'admin', 'static', 'guides', 'robots', 'sitemap',
 ]);
 
 // Trust the X-Forwarded-Proto / Host headers set by a reverse proxy / Vercel
@@ -24,7 +24,8 @@ const RESERVED_CODES = new Set([
 app.set('trust proxy', true);
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// redirect:false so "/guides" isn't 301'd to "/guides/" (keeps canonical URLs clean).
+app.use(express.static(path.join(__dirname, 'public'), { redirect: false }));
 
 // Ensure the schema/migration has run before anything touches the DB or the
 // session store (matters on serverless cold starts).
@@ -304,6 +305,17 @@ app.delete('/api/links/:code', requireAuth, async (req, res) => {
 
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
+app.get('/guides', (req, res) => res.sendFile(path.join(__dirname, 'public', 'guides', 'index.html')));
+app.get('/guides/:slug', (req, res) => {
+  // Only allow safe slug characters; serve the matching static guide page.
+  if (!/^[a-z0-9-]+$/.test(req.params.slug)) {
+    return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  }
+  const file = path.join(__dirname, 'public', 'guides', `${req.params.slug}.html`);
+  res.sendFile(file, (err) => {
+    if (err) res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  });
+});
 
 // ---------- redirect (must come last) ----------
 
