@@ -17,7 +17,7 @@ const BASE_URL = process.env.BASE_URL;
 // Codes that would collide with real routes / static files.
 const RESERVED_CODES = new Set([
   'api', 'login', 'logout', 'signup', 'dashboard', 'style', 'app',
-  'public', 'favicon', 'index', 'admin', 'static', 'guides', 'robots', 'sitemap', 'qr',
+  'public', 'favicon', 'index', 'admin', 'static', 'guides', 'robots', 'sitemap', 'qr', 'docs',
 ]);
 
 // Security headers (also set in vercel.json for static/CDN responses; this
@@ -268,6 +268,78 @@ app.get('/api/stats/:code', async (req, res) => {
   }
 });
 
+// ---------- public API v1 (CORS-enabled, no auth) ----------
+
+function qrUrlFor(req, code) {
+  const base = BASE_URL || `${req.protocol}://${req.get('host')}`;
+  return `${base.replace(/\/+$/, '')}/qr/${code}.svg`;
+}
+
+// CORS for the public API + preflight handling.
+app.use('/api/v1', (req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
+// POST /api/v1/shorten  { url, code? }
+app.post('/api/v1/shorten', async (req, res) => {
+  try {
+    const url = typeof req.body?.url === 'string' ? req.body.url.trim() : '';
+    const rawCode = typeof req.body?.code === 'string' ? req.body.code.trim() : '';
+
+    if (!isValidHttpUrl(url)) {
+      return res.status(400).json({ error: 'Please provide a valid http:// or https:// URL.' });
+    }
+
+    let code;
+    if (rawCode) {
+      if (!isValidCustomCode(rawCode)) {
+        return res.status(400).json({ error: 'Custom code must be 4–30 letters, numbers or dashes (and not a reserved word).' });
+      }
+      if (await getByCode(rawCode)) {
+        return res.status(409).json({ error: 'That custom code is already taken.' });
+      }
+      code = rawCode;
+    } else {
+      code = await generateUniqueCode();
+    }
+
+    await insertUrl(code, url, req.session.userId || null);
+    return res.status(201).json({
+      code,
+      shortUrl: buildShortUrl(req, code),
+      qrUrl: qrUrlFor(req, code),
+      originalUrl: url,
+      clicks: 0,
+    });
+  } catch (err) {
+    console.error('api v1 shorten error:', err);
+    return res.status(500).json({ error: 'Something went wrong.' });
+  }
+});
+
+// GET /api/v1/links/:code  -> stats
+app.get('/api/v1/links/:code', async (req, res) => {
+  try {
+    const row = await getByCode(req.params.code);
+    if (!row) return res.status(404).json({ error: 'Code not found.' });
+    return res.json({
+      code: row.code,
+      shortUrl: buildShortUrl(req, row.code),
+      qrUrl: qrUrlFor(req, row.code),
+      originalUrl: row.original,
+      clicks: Number(row.clicks),
+      createdAt: row.created_at,
+    });
+  } catch (err) {
+    console.error('api v1 stats error:', err);
+    return res.status(500).json({ error: 'Something went wrong.' });
+  }
+});
+
 // ---------- dashboard data APIs (owner-only) ----------
 
 app.get('/api/links', requireAuth, async (req, res) => {
@@ -331,6 +403,7 @@ app.delete('/api/links/:code', requireAuth, async (req, res) => {
 
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
+app.get('/docs', (req, res) => res.sendFile(path.join(__dirname, 'public', 'docs.html')));
 app.get('/guides', (req, res) => res.sendFile(path.join(__dirname, 'public', 'guides', 'index.html')));
 app.get('/guides/:slug', (req, res) => {
   // Only allow safe slug characters; serve the matching static guide page.

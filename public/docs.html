@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free URL Shortener API — Docs | theurlshortner</title>
+  <meta name="description" content="Free URL shortener API. Shorten links programmatically with a simple REST endpoint — custom codes, QR codes, and click stats. No API key, CORS enabled." />
+  <meta name="keywords" content="url shortener api, free url shortener api, short link api, rest api url shortener, link shortener api" />
+  <link rel="canonical" href="https://theurlshortner.com/docs" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Free URL Shortener API — Docs" />
+  <meta property="og:description" content="Shorten links programmatically with a simple REST API. No key, CORS enabled." />
+  <meta property="og:url" content="https://theurlshortner.com/docs" />
+  <meta property="og:image" content="https://theurlshortner.com/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"APIReference","name":"theurlshortner URL Shortener API","description":"Free REST API to shorten URLs, create custom codes, generate QR codes, and read click stats.","url":"https://theurlshortner.com/docs","provider":{"@type":"Organization","name":"theurlshortner","url":"https://theurlshortner.com/"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://theurlshortner.com/"},{"@type":"ListItem","position":2,"name":"API Docs","item":"https://theurlshortner.com/docs"}]}
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/" aria-label="theurlshortner home">
+      <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <span class="brand-name">theurlshortner</span>
+    </a>
+    <div class="nav-links"><a href="/guides">Guides</a> <a href="/" class="btn-link">Shorten a URL</a></div>
+  </nav>
+
+  <main class="page">
+  <article class="guide docs">
+    <nav class="crumbs"><a href="/">Home</a> › <span>API Docs</span></nav>
+    <h1>URL Shortener API</h1>
+    <p class="guide-lead">A free, simple REST API to shorten URLs, set custom codes, generate QR codes, and read click stats. No API key required, and CORS is enabled so you can call it from anywhere.</p>
+
+    <div class="api-meta">
+      <div><span class="api-meta-k">Base URL</span><code>https://theurlshortner.com</code></div>
+      <div><span class="api-meta-k">Auth</span>None (public)</div>
+      <div><span class="api-meta-k">Format</span>JSON · UTF-8</div>
+      <div><span class="api-meta-k">CORS</span>Enabled (<code>*</code>)</div>
+    </div>
+
+    <h2>Shorten a URL</h2>
+    <p><span class="method post">POST</span> <code>/api/v1/shorten</code></p>
+    <p>Body (JSON):</p>
+    <table class="params">
+      <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>url</code></td><td>string</td><td>Yes</td><td>The long <code>http(s)</code> URL to shorten.</td></tr>
+        <tr><td><code>code</code></td><td>string</td><td>No</td><td>Custom back-half (4–30 letters, numbers, dashes). Random if omitted.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="code-label">Request</p>
+    <pre><code>curl -X POST https://theurlshortner.com/api/v1/shorten \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com/a/very/long/link","code":"my-link"}'</code></pre>
+
+    <p class="code-label">Response <span class="muted-inline">201 Created</span></p>
+    <pre><code>{
+  "code": "my-link",
+  "shortUrl": "https://theurlshortner.com/my-link",
+  "qrUrl": "https://theurlshortner.com/qr/my-link.svg",
+  "originalUrl": "https://example.com/a/very/long/link",
+  "clicks": 0
+}</code></pre>
+
+    <p class="code-label">JavaScript (fetch)</p>
+    <pre><code>const res = await fetch("https://theurlshortner.com/api/v1/shorten", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ url: "https://example.com" })
+});
+const data = await res.json();
+console.log(data.shortUrl);</code></pre>
+
+    <h2>Get link stats</h2>
+    <p><span class="method get">GET</span> <code>/api/v1/links/:code</code></p>
+    <p class="code-label">Request</p>
+    <pre><code>curl https://theurlshortner.com/api/v1/links/my-link</code></pre>
+    <p class="code-label">Response <span class="muted-inline">200 OK</span></p>
+    <pre><code>{
+  "code": "my-link",
+  "shortUrl": "https://theurlshortner.com/my-link",
+  "qrUrl": "https://theurlshortner.com/qr/my-link.svg",
+  "originalUrl": "https://example.com/a/very/long/link",
+  "clicks": 42,
+  "createdAt": "2026-06-14 10:00:00"
+}</code></pre>
+
+    <h2>QR code</h2>
+    <p><span class="method get">GET</span> <code>/qr/:code.svg</code></p>
+    <p>Returns a scannable SVG QR code for the short link. Use it in an <code>&lt;img&gt;</code> tag or download it for print.</p>
+    <pre><code>&lt;img src="https://theurlshortner.com/qr/my-link.svg" width="200" height="200" alt="QR code"&gt;</code></pre>
+
+    <h2>Errors</h2>
+    <table class="params">
+      <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>400</code></td><td>Invalid URL, or invalid/reserved custom code.</td></tr>
+        <tr><td><code>404</code></td><td>Code not found (stats endpoint).</td></tr>
+        <tr><td><code>409</code></td><td>Custom code already taken.</td></tr>
+        <tr><td><code>500</code></td><td>Server error.</td></tr>
+      </tbody>
+    </table>
+    <p>Errors return JSON: <code>{ "error": "message" }</code>.</p>
+
+    <p class="guide-cta"><a class="btn-link" href="/">Try it on the homepage →</a></p>
+  </article>
+  </main>
+
+  <footer class="footer">
+    <a href="/">Home</a> · <a href="/guides">Guides</a> · <a href="/docs">API</a> · <a href="/login">Sign in</a>
+  </footer>
+</body>
+</html>
