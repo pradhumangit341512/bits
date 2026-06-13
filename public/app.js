@@ -9,6 +9,8 @@ const copyBtn = document.getElementById('copy-btn');
 const clicksEl = document.getElementById('clicks');
 const refreshBtn = document.getElementById('refresh-btn');
 const navLinks = document.getElementById('nav-links');
+const qrImg = document.getElementById('qr-img');
+const qrDownload = document.getElementById('qr-download');
 
 let currentCode = null;
 
@@ -71,6 +73,10 @@ form.addEventListener('submit', async (e) => {
     shortLink.textContent = data.shortUrl;
     shortLink.href = data.shortUrl;
     clicksEl.textContent = '0 clicks';
+    const qrUrl = `/qr/${encodeURIComponent(data.code)}.svg`;
+    qrImg.src = qrUrl;
+    qrDownload.href = qrUrl;
+    qrDownload.setAttribute('download', `${data.code}-qr.svg`);
     resultEl.hidden = false;
     codeInput.value = '';
   } catch {

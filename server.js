@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+const QRCode = require('qrcode');
 const { nanoid } = require('nanoid');
 const { client, init } = require('./db');
 const LibsqlStore = require('./session-store');
@@ -16,12 +17,37 @@ const BASE_URL = process.env.BASE_URL;
 // Codes that would collide with real routes / static files.
 const RESERVED_CODES = new Set([
   'api', 'login', 'logout', 'signup', 'dashboard', 'style', 'app',
-  'public', 'favicon', 'index', 'admin', 'static', 'guides', 'robots', 'sitemap',
+  'public', 'favicon', 'index', 'admin', 'static', 'guides', 'robots', 'sitemap', 'qr',
 ]);
+
+// Security headers (also set in vercel.json for static/CDN responses; this
+// covers local dev and dynamic function responses).
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "object-src 'none'",
+].join('; ');
 
 // Trust the X-Forwarded-Proto / Host headers set by a reverse proxy / Vercel
 // so req.protocol and secure cookies work correctly behind HTTPS.
 app.set('trust proxy', true);
+
+// Security headers on every response.
+app.use((req, res, next) => {
+  res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  res.set('X-Content-Type-Options', 'nosniff');
+  res.set('X-Frame-Options', 'SAMEORIGIN');
+  res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.set('Content-Security-Policy', CSP);
+  next();
+});
 
 app.use(express.json());
 // redirect:false so "/guides" isn't 301'd to "/guides/" (keeps canonical URLs clean).
@@ -315,6 +341,30 @@ app.get('/guides/:slug', (req, res) => {
   res.sendFile(file, (err) => {
     if (err) res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
   });
+});
+
+// ---------- QR code for a short link ----------
+// GET /qr/:code(.svg) -> SVG QR code encoding the short URL.
+app.get('/qr/:code', async (req, res) => {
+  try {
+    const code = req.params.code.replace(/\.svg$/i, '');
+    if (!/^[A-Za-z0-9-]{1,40}$/.test(code)) {
+      return res.status(400).send('Invalid code');
+    }
+    const target = buildShortUrl(req, code);
+    const svg = await QRCode.toString(target, {
+      type: 'svg',
+      margin: 1,
+      width: 240,
+      color: { dark: '#0f172a', light: '#ffffff' },
+    });
+    res.type('image/svg+xml');
+    res.set('Cache-Control', 'public, max-age=86400');
+    return res.send(svg);
+  } catch (err) {
+    console.error('qr error:', err);
+    return res.status(500).send('QR generation failed');
+  }
 });
 
 // ---------- redirect (must come last) ----------

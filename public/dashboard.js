@@ -64,6 +64,10 @@ function render(links) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span class="btn-label">Copy</span>
           </button>
+          <button type="button" class="link-btn" data-act="qr" title="Show QR code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+            <span class="btn-label">QR</span>
+          </button>
           <button type="button" class="link-btn" data-act="edit" title="Edit destination">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
             <span class="btn-label">Edit</span>
@@ -143,6 +147,11 @@ linksBody.addEventListener('click', async (e) => {
     } catch {
       showError('Could not copy.');
     }
+    return;
+  }
+
+  if (act === 'qr') {
+    window.open(`/qr/${encodeURIComponent(code)}.svg`, '_blank', 'noopener');
     return;
   }
 
