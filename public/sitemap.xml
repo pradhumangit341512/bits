@@ -26,6 +26,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://theurlshortner.com/guides/free-url-shortener</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theurlshortner.com/guides/url-shortener-with-click-tracking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theurlshortner.com/guides/shorten-youtube-link</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://theurlshortner.com/guides/instagram-bio-link-shortener</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://theurlshortner.com/guides/shorten-link-for-whatsapp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://theurlshortner.com/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
