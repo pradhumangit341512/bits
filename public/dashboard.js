@@ -55,10 +55,10 @@ function render(links) {
     .map(
       (l) => `
       <tr data-code="${escapeHtml(l.code)}">
-        <td><a href="${escapeHtml(l.shortUrl)}" target="_blank" rel="noopener">${escapeHtml(l.shortUrl)}</a></td>
-        <td class="dest"><span class="dest-text">${escapeHtml(l.original)}</span></td>
-        <td>${l.clicks}</td>
-        <td>${fmtDate(l.createdAt)}</td>
+        <td data-label="Short URL"><a href="${escapeHtml(l.shortUrl)}" target="_blank" rel="noopener">${escapeHtml(l.shortUrl)}</a></td>
+        <td class="dest" data-label="Destination"><span class="dest-text">${escapeHtml(l.original)}</span></td>
+        <td data-label="Clicks">${l.clicks}</td>
+        <td data-label="Created">${fmtDate(l.createdAt)}</td>
         <td class="actions">
           <button type="button" class="link-btn" data-act="copy" title="Copy short link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>

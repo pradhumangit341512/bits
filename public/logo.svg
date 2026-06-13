@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" role="img" aria-label="theurlshortner">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="56" height="56" rx="14" fill="url(#lg)"/>
+  <g fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="translate(8 8)">
+    <path d="M24 31a6.5 6.5 0 0 0 9.8.7l3.9-3.9A6.5 6.5 0 0 0 28.5 18.7l-2.3 2.3"/>
+    <path d="M32 25a6.5 6.5 0 0 0-9.8-.7l-3.9 3.9A6.5 6.5 0 0 0 27.5 37.3l2.3-2.3"/>
+  </g>
+  <text x="80" y="47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-1">
+    <tspan fill="#0f172a">theurl</tspan><tspan fill="#2563eb">shortner</tspan>
+  </text>
+</svg>

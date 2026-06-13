@@ -903,3 +903,85 @@ button svg {
   color: var(--primary);
   text-decoration: none;
 }
+
+/* ---------- logo / brand wordmark ---------- */
+.brand {
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+.brand-name { color: var(--text); }
+.brand-icon { flex: none; }
+
+/* ---------- responsive refinements (fix nav/layout gaps) ---------- */
+@media (max-width: 760px) {
+  .nav { padding: 0.85rem 1rem; }
+  .nav-links { gap: 0.65rem; font-size: 0.9rem; }
+  .hero { padding-top: 1.75rem; }
+  .features { padding-top: 2.5rem; }
+}
+
+@media (max-width: 560px) {
+  .nav-email { display: none; }            /* free up space on phones */
+  .card { padding: 1.5rem; }
+  .auth-card { padding: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .brand-name { display: none; }           /* icon-only logo on small screens */
+  .nav-links .btn-link { padding: 0.4rem 0.75rem; }
+  .hero h1 { font-size: 1.85rem; }
+  .features h2, .faq h2 { font-size: 1.45rem; }
+  .guide h1 { font-size: 1.6rem; }
+}
+
+/* ---------- dashboard table -> stacked cards on phones ---------- */
+@media (max-width: 640px) {
+  .table-wrap { border: none; overflow: visible; }
+  .links-table thead { display: none; }
+  .links-table, .links-table tbody { display: block; }
+  .links-table tr {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.5rem 0.9rem;
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .links-table tr:last-child { margin-bottom: 0; }
+  .links-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.4rem 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .links-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex: none;
+  }
+  .links-table td a,
+  .links-table .dest-text {
+    text-align: right;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .links-table td.actions {
+    justify-content: flex-start;
+    gap: 1.4rem;
+    border-bottom: none;
+    padding-top: 0.6rem;
+  }
+  .links-table td.actions::before { display: none; }
+  .links-table td.muted { display: block; text-align: center; }
+  .links-table td.muted::before { display: none; }
+}

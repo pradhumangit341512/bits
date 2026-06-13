@@ -1,6 +1,6 @@
 {
-  "name": "Shortly — Free URL Shortener",
-  "short_name": "Shortly",
+  "name": "theurlshortner — Free URL Shortener",
+  "short_name": "theurlshortner",
   "description": "Free URL shortener with custom codes and click tracking.",
   "start_url": "/",
   "display": "standalone",
