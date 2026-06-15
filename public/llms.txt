@@ -1,6 +1,6 @@
-# theurlshortner
+# TheURLShortner
 
-> theurlshortner (https://theurlshortner.com) is a free URL shortener that turns long web
+> TheURLShortner (https://theurlshortner.com) is a free URL shortener that turns long web
 > addresses into short, shareable, trackable links. Users can optionally choose a
 > custom back-half code and track how many times each link is clicked.
 
@@ -14,8 +14,8 @@
 
 ## Common questions
 - What is a URL shortener? A tool that converts a long URL into a short link that redirects to the original address.
-- How do I shorten a URL on theurlshortner? Paste the long URL on the homepage and click "Shorten"; optionally enter a custom code.
-- Is theurlshortner free? Yes, shortening URLs is free and needs no account.
+- How do I shorten a URL on TheURLShortner? Paste the long URL on the homepage and click "Shorten"; optionally enter a custom code.
+- Is TheURLShortner free? Yes, shortening URLs is free and needs no account.
 - Can I customize the short link? Yes, you can set a custom back-half code.
 - Can I track clicks? Yes, each link shows its total click count.
 

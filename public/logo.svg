@@ -11,6 +11,6 @@
     <path d="M32 25a6.5 6.5 0 0 0-9.8-.7l-3.9 3.9A6.5 6.5 0 0 0 27.5 37.3l2.3-2.3"/>
   </g>
   <text x="80" y="47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="-1">
-    <tspan fill="#0f172a">theurl</tspan><tspan fill="#2563eb">shortner</tspan>
+    <tspan fill="#0f172a">TheURL</tspan><tspan fill="#2563eb">Shortner</tspan>
   </text>
 </svg>
