@@ -285,12 +285,23 @@ button:disabled {
   padding-left: 0.25rem;
 }
 
+/* Stack the shortener controls vertically so the custom-code box and option
+   fields always get full width (fixes the collapsed custom input on desktop). */
 #shorten-form {
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
 }
 
-#shorten-form #url-input {
-  flex-basis: 100%;
+#shorten-form .custom-row {
+  width: 100%;
+  flex: none;
+  padding: 0.15rem 0.6rem;
+}
+
+#shorten-form #shorten-btn {
+  width: 100%;
+  margin-top: 0.15rem;
 }
 
 /* ---------- features ---------- */
@@ -1273,4 +1284,42 @@ button svg {
   background: #fef2f2;
   color: var(--error);
   border-color: #fecaca;
+}
+
+/* guide AEO: comparison table + in-article FAQ */
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1.25rem;
+  font-size: 0.92rem;
+}
+.compare th,
+.compare td {
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.compare thead th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.compare tbody th {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.guide-faq {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 1rem;
+  text-align: left;
+}
+.guide-updated {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: -0.25rem 0 1.25rem;
 }

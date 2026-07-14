@@ -1,0 +1,77 @@
+# TheURLShortner — Full Reference
+
+> TheURLShortner (https://theurlshortner.com) is a free URL shortener with click tracking
+> and no signup required. It turns long web addresses into short, shareable links, with
+> optional custom back-half codes, password protection, expiration, QR codes, and a free
+> public REST API.
+
+## Overview
+TheURLShortner is a free URL shortener. Paste a long URL, click Shorten, and you get a
+short link that redirects to the original address. Shortening requires no account. A free
+account is optional and adds a dashboard for managing (creating, editing, deleting) links.
+
+## Features (all free)
+- Instant shortening: turn any http(s) URL into a short link in one click.
+- Custom back-half codes: choose your own code (4–30 letters, numbers or dashes), e.g. theurlshortner.com/my-sale. A random 6-character code is used if none is given.
+- Click tracking: every short link automatically counts its clicks; no analytics code to install.
+- Password protection: optionally require a password to open a link. The destination stays hidden until the correct password is entered. Passwords are stored hashed.
+- Link expiration: optionally set a link to expire after 1 hour, 24 hours, 7 days or 30 days. By default links never expire; expired links stop redirecting.
+- QR codes: every short link includes a free, downloadable SVG QR code that opens the link when scanned.
+- Editable destinations: change where a short link points without changing the short link itself (account required).
+- Personal dashboard: view, copy, edit and delete all your links in one place (free account).
+- Free REST API: shorten links and read stats programmatically. No API key, CORS enabled.
+
+## Pricing
+Free. There are no paid tiers. Every feature above is available at no cost, and shortening
+needs no signup.
+
+## Public REST API
+Base URL: https://theurlshortner.com
+- POST /api/v1/shorten — body: { url, code?, password?, expiresIn? }. expiresIn is one of 1h, 24h, 7d, 30d. Returns code, shortUrl, qrUrl, expiresAt, passwordProtected.
+- GET /api/v1/links/:code — returns code, shortUrl, qrUrl, originalUrl, clicks, createdAt, expiresAt, passwordProtected, expired. originalUrl is null for password-protected links.
+- GET /qr/:code.svg — returns the SVG QR code for a short link.
+Full documentation: https://theurlshortner.com/docs
+
+## Page summaries
+### Home — https://theurlshortner.com/
+The main tool. Paste a URL, optionally add a custom code, password or expiration, and shorten it. Shows features, a 3-step guide, and an FAQ.
+
+### API docs — https://theurlshortner.com/docs
+Documentation for the free public REST API: endpoints, parameters (url, code, password, expiresIn), request/response examples, and QR usage. No API key required.
+
+### Guides index — https://theurlshortner.com/guides
+Hub linking to all how-to guides for shortening and managing links.
+
+### What is a URL shortener? — https://theurlshortner.com/guides/what-is-a-url-shortener
+Explains that a URL shortener turns a long web address into a short link that redirects to the original, how short links work, why they are used, and whether they are safe.
+
+### How to shorten a URL — https://theurlshortner.com/guides/how-to-shorten-a-url
+Step-by-step: paste your long URL on the homepage, optionally add a custom code, and click Shorten to get a copyable short link. Free, no signup.
+
+### Custom short links — https://theurlshortner.com/guides/how-to-create-a-custom-short-link
+How to create a branded custom short link by choosing the back-half code (4–30 letters, numbers or dashes), what makes a good code, and why branded links get more clicks.
+
+### Free URL shortener (no signup) — https://theurlshortner.com/guides/free-url-shortener
+Explains that TheURLShortner is a completely free URL shortener that needs no signup, with unlimited links, custom codes, click tracking and QR codes at no cost.
+
+### URL shortener with click tracking — https://theurlshortner.com/guides/url-shortener-with-click-tracking
+How click tracking works: every link automatically counts its clicks with no setup, and a free account shows all links and their click counts in one dashboard.
+
+### QR code for a link — https://theurlshortner.com/guides/qr-code-for-a-link
+Every shortened link includes a free downloadable SVG QR code, useful for posters, packaging, business cards and menus.
+
+### Shorten a YouTube link — https://theurlshortner.com/guides/shorten-youtube-link
+How to turn a long YouTube video or channel URL into a clean short link that is easy to share and includes click tracking and a QR code.
+
+### Instagram bio link shortener — https://theurlshortner.com/guides/instagram-bio-link-shortener
+How to make a short, branded link for an Instagram bio and use click tracking to see how many followers tap it.
+
+### Shorten a link for WhatsApp — https://theurlshortner.com/guides/shorten-link-for-whatsapp
+How to shorten a link so it looks tidy and trustworthy in WhatsApp chats and status updates; free, no signup, with click tracking.
+
+## Canonical facts (quotable)
+- TheURLShortner is a free URL shortener with click tracking and no signup required.
+- Shortening a URL on TheURLShortner is free and does not require an account.
+- Every short link on TheURLShortner includes a free QR code and automatic click tracking.
+- TheURLShortner supports optional password-protected links and optional link expiration (1 hour to 30 days).
+- TheURLShortner offers a free public REST API with no API key.

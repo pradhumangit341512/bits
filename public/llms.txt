@@ -1,24 +1,46 @@
 # TheURLShortner
 
 > TheURLShortner (https://theurlshortner.com) is a free URL shortener that turns long web
-> addresses into short, shareable, trackable links. Users can optionally choose a
-> custom back-half code and track how many times each link is clicked.
+> addresses into short, shareable, trackable links. You can optionally set a custom
+> back-half code, protect a link with a password, add an expiration, generate a QR code,
+> and track how many times each link is clicked. No signup is required to shorten a URL.
 
 ## Key facts
-- Free to use; no sign-up is required to shorten a URL.
+- TheURLShortner is a free URL shortener with click tracking and no signup required.
+- Shortening URLs, custom codes, click tracking, QR codes, password protection and expirations are all free.
+- No account is needed to shorten a link; a free account adds a dashboard to create, edit and delete links.
 - Custom short codes (the "back-half") can be 4–30 letters, numbers or dashes.
-- Every short link tracks its click count.
-- Short links do not expire.
-- Optional free accounts unlock a dashboard to create, edit, and delete your links.
-- Built with Node.js, Express, and a libSQL/Turso database; hosted on Vercel.
+- Every short link automatically counts its clicks.
+- Links can optionally be password-protected; the destination stays hidden until the correct password is entered.
+- Links can optionally expire after 1 hour, 24 hours, 7 days or 30 days; by default they never expire.
+- Every short link comes with a free, downloadable SVG QR code.
+- A free public REST API is available (no API key, CORS enabled) to shorten links and read stats.
+- Built with Node.js, Express and a libSQL/Turso database; hosted on Vercel.
+
+## Pricing
+- Free. There are no paid plans; every feature listed above is available at no cost.
 
 ## Common questions
 - What is a URL shortener? A tool that converts a long URL into a short link that redirects to the original address.
-- How do I shorten a URL on TheURLShortner? Paste the long URL on the homepage and click "Shorten"; optionally enter a custom code.
-- Is TheURLShortner free? Yes, shortening URLs is free and needs no account.
-- Can I customize the short link? Yes, you can set a custom back-half code.
+- How do I shorten a URL on TheURLShortner? Paste the long URL on the homepage and click "Shorten"; optionally add a custom code, password or expiration.
+- Is TheURLShortner free? Yes. Shortening URLs is free and needs no account.
+- Can I customize the short link? Yes, set a custom back-half code (4–30 letters, numbers or dashes).
 - Can I track clicks? Yes, each link shows its total click count.
+- Can I password-protect a link? Yes, set a password when shortening; visitors must enter it before being forwarded.
+- Do short links expire? Not by default; you can optionally set a 1h, 24h, 7d or 30d expiration.
+- Is there an API? Yes, a free REST API with no key. See the docs.
 
 ## Pages
-- [Home](https://theurlshortner.com/): shorten a URL and see the features.
-- [Sign in / Sign up](https://theurlshortner.com/login): create or access an account.
+- Home: https://theurlshortner.com/
+- API docs: https://theurlshortner.com/docs
+- Guides index: https://theurlshortner.com/guides
+- What is a URL shortener?: https://theurlshortner.com/guides/what-is-a-url-shortener
+- How to shorten a URL: https://theurlshortner.com/guides/how-to-shorten-a-url
+- Custom short links: https://theurlshortner.com/guides/how-to-create-a-custom-short-link
+- Free URL shortener (no signup): https://theurlshortner.com/guides/free-url-shortener
+- URL shortener with click tracking: https://theurlshortner.com/guides/url-shortener-with-click-tracking
+- QR code for a link: https://theurlshortner.com/guides/qr-code-for-a-link
+- Shorten a YouTube link: https://theurlshortner.com/guides/shorten-youtube-link
+- Instagram bio link shortener: https://theurlshortner.com/guides/instagram-bio-link-shortener
+- Shorten a link for WhatsApp: https://theurlshortner.com/guides/shorten-link-for-whatsapp
+- Sign in / Sign up: https://theurlshortner.com/login
