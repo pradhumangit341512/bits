@@ -60,13 +60,15 @@
       <tbody>
         <tr><td><code>url</code></td><td>string</td><td>Yes</td><td>The long <code>http(s)</code> URL to shorten.</td></tr>
         <tr><td><code>code</code></td><td>string</td><td>No</td><td>Custom back-half (4–30 letters, numbers, dashes). Random if omitted.</td></tr>
+        <tr><td><code>password</code></td><td>string</td><td>No</td><td>Protect the link with a password (up to 200 chars). Visitors must enter it before being forwarded.</td></tr>
+        <tr><td><code>expiresIn</code></td><td>string</td><td>No</td><td>Expiration preset: <code>1h</code>, <code>24h</code>, <code>7d</code> or <code>30d</code>. Omit for a link that never expires.</td></tr>
       </tbody>
     </table>
 
     <p class="code-label">Request</p>
     <pre><code>curl -X POST https://theurlshortner.com/api/v1/shorten \
   -H "Content-Type: application/json" \
-  -d '{"url":"https://example.com/a/very/long/link","code":"my-link"}'</code></pre>
+  -d '{"url":"https://example.com/a/very/long/link","code":"my-link","expiresIn":"7d"}'</code></pre>
 
     <p class="code-label">Response <span class="muted-inline">201 Created</span></p>
     <pre><code>{
@@ -74,7 +76,9 @@
   "shortUrl": "https://theurlshortner.com/my-link",
   "qrUrl": "https://theurlshortner.com/qr/my-link.svg",
   "originalUrl": "https://example.com/a/very/long/link",
-  "clicks": 0
+  "clicks": 0,
+  "expiresAt": "2026-06-21T10:00:00.000Z",
+  "passwordProtected": false
 }</code></pre>
 
     <p class="code-label">JavaScript (fetch)</p>
@@ -97,8 +101,12 @@ console.log(data.shortUrl);</code></pre>
   "qrUrl": "https://theurlshortner.com/qr/my-link.svg",
   "originalUrl": "https://example.com/a/very/long/link",
   "clicks": 42,
-  "createdAt": "2026-06-14 10:00:00"
+  "createdAt": "2026-06-14 10:00:00",
+  "expiresAt": null,
+  "passwordProtected": false,
+  "expired": false
 }</code></pre>
+    <p class="muted-inline">For a password-protected link, <code>originalUrl</code> is returned as <code>null</code> so the destination stays hidden.</p>
 
     <h2>QR code</h2>
     <p><span class="method get">GET</span> <code>/qr/:code.svg</code></p>

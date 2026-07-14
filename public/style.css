@@ -1087,3 +1087,190 @@ button svg {
 /* fix: keep API meta cells from overflowing */
 .api-meta > div { min-width: 0; }
 .api-meta code { word-break: break-all; font-size: 0.82rem; }
+
+/* ---------- homepage: trust bar ---------- */
+.trust-bar {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0;
+  margin: 1.25rem auto 0;
+  max-width: 560px;
+}
+.trust-bar li {
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- homepage: how it works ---------- */
+.steps-section {
+  width: 100%;
+  max-width: 1000px;
+  padding: 3.5rem 1.5rem 0;
+  text-align: center;
+}
+.steps-section h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+.steps-section .lead {
+  color: var(--muted);
+  margin: 0 auto 2.5rem;
+  max-width: 520px;
+}
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  counter-reset: none;
+  text-align: left;
+}
+.step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.step h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+.step p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- homepage: CTA band ---------- */
+.cta-band {
+  width: 100%;
+  max-width: 1100px;
+  margin: 3rem 1.5rem 0;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-soft), #fff);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.cta-band h2 {
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+.cta-band p {
+  color: var(--muted);
+  margin: 0 auto 1.5rem;
+  max-width: 520px;
+}
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.cta-primary, .cta-secondary {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cta-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.cta-primary:hover { transform: translateY(-2px); }
+.cta-secondary {
+  background: var(--surface);
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+.cta-secondary:hover { transform: translateY(-2px); }
+
+/* ---------- homepage additions: responsive ---------- */
+@media (max-width: 720px) {
+  .steps { grid-template-columns: 1fr; }
+  .cta-band { margin-left: 1rem; margin-right: 1rem; padding: 2rem 1.25rem; }
+}
+
+/* ---------- shortener: optional link controls (password / expiry) ---------- */
+.opt-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
+}
+.opt-chip {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.opt-chip:hover { border-color: var(--primary); color: var(--primary); }
+.opt-chip.active {
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  border-color: var(--primary);
+}
+.opt-field { margin-top: 0.25rem; }
+.opt-field input,
+.opt-field select {
+  width: 100%;
+}
+.opt-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.result-meta {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* dashboard link badges (password / expiry) */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.badge-expired {
+  background: #fef2f2;
+  color: var(--error);
+  border-color: #fecaca;
+}

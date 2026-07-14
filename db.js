@@ -47,12 +47,20 @@ async function migrate() {
     )
   `);
 
-  // Add urls.user_id only if it doesn't already exist — preserves existing rows
-  // (old anonymous links keep user_id = NULL).
+  // Additive column migrations — each guarded so existing rows are preserved.
   const info = await client.execute('PRAGMA table_info(urls)');
-  const hasUserId = info.rows.some((r) => r.name === 'user_id');
-  if (!hasUserId) {
+  const cols = new Set(info.rows.map((r) => r.name));
+  // Old anonymous links keep user_id = NULL.
+  if (!cols.has('user_id')) {
     await client.execute('ALTER TABLE urls ADD COLUMN user_id INTEGER REFERENCES users(id)');
+  }
+  // Optional per-link password (bcrypt hash). NULL = no password.
+  if (!cols.has('password_hash')) {
+    await client.execute('ALTER TABLE urls ADD COLUMN password_hash TEXT');
+  }
+  // Optional expiry as an ISO 8601 UTC string. NULL = never expires.
+  if (!cols.has('expires_at')) {
+    await client.execute('ALTER TABLE urls ADD COLUMN expires_at TEXT');
   }
 }
 

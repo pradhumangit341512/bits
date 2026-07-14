@@ -29,6 +29,14 @@
       <input id="url-input" type="url" placeholder="https://example.com/long/link" required />
       <input id="code-input" type="text" placeholder="custom-code (optional)"
              pattern="[A-Za-z0-9\-]{4,30}" title="4–30 letters, numbers or dashes" />
+      <input id="password-input" type="password" maxlength="200" placeholder="password (optional)" autocomplete="new-password" />
+      <select id="expiry-select" title="Link expiration">
+        <option value="">No expiry</option>
+        <option value="1h">Expires 1h</option>
+        <option value="24h">Expires 24h</option>
+        <option value="7d">Expires 7d</option>
+        <option value="30d">Expires 30d</option>
+      </select>
       <button type="submit" id="create-btn">Create</button>
     </form>
 

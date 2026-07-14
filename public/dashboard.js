@@ -2,6 +2,8 @@ const navLinks = document.getElementById('nav-links');
 const createForm = document.getElementById('create-form');
 const urlInput = document.getElementById('url-input');
 const codeInput = document.getElementById('code-input');
+const passwordInput = document.getElementById('password-input');
+const expirySelect = document.getElementById('expiry-select');
 const createBtn = document.getElementById('create-btn');
 const errorEl = document.getElementById('error');
 const linksBody = document.getElementById('links-body');
@@ -25,6 +27,28 @@ function fmtDate(s) {
   // created_at is stored as "YYYY-MM-DD HH:MM:SS" (UTC).
   const d = new Date(s.replace(' ', 'T') + 'Z');
   return isNaN(d) ? s : d.toLocaleDateString();
+}
+
+// expires_at is an ISO string; returns { expired, label } or null.
+function fmtExpiry(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return null;
+  return { expired: d.getTime() <= Date.now(), label: d.toLocaleDateString() };
+}
+
+// Small badges (🔒 password / ⏳ expiry) for a link row.
+function linkBadges(l) {
+  const badges = [];
+  if (l.hasPassword) badges.push('<span class="badge" title="Password protected">🔒</span>');
+  if (l.expiresAt) {
+    const e = fmtExpiry(l.expiresAt);
+    if (e) {
+      badges.push(e.expired
+        ? '<span class="badge badge-expired" title="Expired">⏳ expired</span>'
+        : `<span class="badge" title="Expires ${escapeHtml(e.label)}">⏳ ${escapeHtml(e.label)}</span>`);
+    }
+  }
+  return badges.length ? ' ' + badges.join(' ') : '';
 }
 
 // Require login; redirect out if not authenticated.
@@ -55,7 +79,7 @@ function render(links) {
     .map(
       (l) => `
       <tr data-code="${escapeHtml(l.code)}">
-        <td data-label="Short URL"><a href="${escapeHtml(l.shortUrl)}" target="_blank" rel="noopener">${escapeHtml(l.shortUrl)}</a></td>
+        <td data-label="Short URL"><a href="${escapeHtml(l.shortUrl)}" target="_blank" rel="noopener">${escapeHtml(l.shortUrl)}</a>${linkBadges(l)}</td>
         <td class="dest" data-label="Destination"><span class="dest-text">${escapeHtml(l.original)}</span></td>
         <td data-label="Clicks">${l.clicks}</td>
         <td data-label="Created">${fmtDate(l.createdAt)}</td>
@@ -108,6 +132,10 @@ createForm.addEventListener('submit', async (e) => {
     const body = { url: urlInput.value.trim() };
     const custom = codeInput.value.trim();
     if (custom) body.code = custom;
+    const password = passwordInput ? passwordInput.value : '';
+    if (password) body.password = password;
+    const expiresIn = expirySelect ? expirySelect.value : '';
+    if (expiresIn) body.expiresIn = expiresIn;
 
     const res = await fetch('/api/shorten', {
       method: 'POST',
@@ -121,6 +149,8 @@ createForm.addEventListener('submit', async (e) => {
     }
     urlInput.value = '';
     codeInput.value = '';
+    if (passwordInput) passwordInput.value = '';
+    if (expirySelect) expirySelect.value = '';
     loadLinks();
   } catch {
     showError('Network error.');

@@ -83,6 +83,13 @@
     <h1>Short links that <span class="accent">work harder</span>.</h1>
     <p>Turn long, messy URLs into clean, trackable short links — with your own custom back-half and click stats.</p>
 
+    <ul class="trust-bar" aria-label="Why use TheURLShortner">
+      <li>✓ Free forever</li>
+      <li>✓ No signup to shorten</li>
+      <li>✓ QR code included</li>
+      <li>✓ No credit card</li>
+    </ul>
+
     <section class="card">
       <form id="shorten-form" autocomplete="off">
         <input
@@ -102,6 +109,25 @@
             title="4–30 letters, numbers or dashes"
           />
         </div>
+
+        <div class="opt-toggles">
+          <button type="button" class="opt-chip" id="toggle-password" aria-pressed="false" aria-controls="password-field">🔒 Password protect</button>
+          <button type="button" class="opt-chip" id="toggle-expiry" aria-pressed="false" aria-controls="expiry-field">⏳ Set expiration</button>
+        </div>
+        <div class="opt-field" id="password-field" hidden>
+          <input id="password-input" type="password" maxlength="200" placeholder="Password to open this link (optional)" autocomplete="new-password" />
+        </div>
+        <div class="opt-field" id="expiry-field" hidden>
+          <label class="opt-label" for="expiry-select">This link expires:</label>
+          <select id="expiry-select">
+            <option value="">Never</option>
+            <option value="1h">In 1 hour</option>
+            <option value="24h">In 24 hours</option>
+            <option value="7d">In 7 days</option>
+            <option value="30d">In 30 days</option>
+          </select>
+        </div>
+
         <button type="submit" id="shorten-btn">Shorten</button>
       </form>
 
@@ -116,6 +142,7 @@
           <span id="clicks">0 clicks</span>
           <button id="refresh-btn" type="button" class="link-btn">refresh</button>
         </p>
+        <p id="result-meta" class="result-meta" hidden></p>
         <div class="qr-box">
           <img id="qr-img" class="qr-img" alt="QR code for your short link" width="132" height="132" />
           <a id="qr-download" class="link-btn" download>Download QR code</a>
@@ -123,6 +150,28 @@
       </section>
     </section>
   </header>
+
+  <section class="steps-section">
+    <h2>Shorten a link in 3 simple steps</h2>
+    <p class="lead">No account needed to get your first short link.</p>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <h3>Paste your URL</h3>
+        <p>Drop any long link into the box above — nothing to install.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <h3>Customize (optional)</h3>
+        <p>Add your own back-half code for a branded, memorable link.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <h3>Share &amp; track</h3>
+        <p>Copy your short link or QR code, then watch the clicks roll in.</p>
+      </li>
+    </ol>
+  </section>
 
   <section class="features">
     <h2>Everything you need to share links with confidence</h2>
@@ -182,6 +231,24 @@
         <p>Email + password sign-in with hashed passwords and private sessions.</p>
         <p class="why"><strong>Why it helps:</strong> your links stay yours — only you can see and manage the links in your account.</p>
       </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21v.01M18 18h3v3h-3z"/></svg>
+        </div>
+        <h3>QR codes included</h3>
+        <p>Every short link comes with a downloadable QR code — ready for print, packaging or slides.</p>
+        <p class="why"><strong>Why it helps:</strong> people scan instead of typing, so your link works offline and on any phone.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Free REST API</h3>
+        <p>Shorten links from your own code with a simple, key-free endpoint. <a href="/docs">Read the API docs</a>.</p>
+        <p class="why"><strong>Why it helps:</strong> automate short links from your app, bot or workflow — no dashboard needed.</p>
+      </article>
     </div>
   </section>
 
@@ -206,11 +273,15 @@
       </details>
       <details class="faq-item">
         <summary>Do short links expire?</summary>
-        <p>No. Your short links stay active and keep redirecting to the original URL.</p>
+        <p>By default, no — your short links stay active and keep redirecting. You can optionally set an expiration (1 hour, 24 hours, 7 days or 30 days) when you create a link, after which it stops redirecting.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I password-protect a short link?</summary>
+        <p>Yes. When shortening, turn on <strong>Password protect</strong> and set a password. Visitors must enter it before they're forwarded to your destination, and the destination stays hidden until they do.</p>
       </details>
       <details class="faq-item">
         <summary>Is TheURLShortner free to use?</summary>
-        <p>Yes, TheURLShortner is completely free to shorten URLs and track clicks.</p>
+        <p>Yes, TheURLShortner is completely free to shorten URLs, track clicks, protect links with a password and set expirations.</p>
       </details>
     </div>
   </section>
@@ -225,11 +296,21 @@
       { "@type": "Question", "name": "How do I shorten a URL for free?", "acceptedAnswer": { "@type": "Answer", "text": "Paste your long URL into the box on the homepage and click Shorten. You get a short link you can copy and share right away, with no signup required." } },
       { "@type": "Question", "name": "Can I create a custom short link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. When shortening, enter your own custom code (the back-half) of 4 to 30 letters, numbers or dashes to make a branded, memorable link." } },
       { "@type": "Question", "name": "Can I track how many people click my link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every short link counts its clicks. Create a free account to see all of your links and their click counts in one dashboard." } },
-      { "@type": "Question", "name": "Do short links expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your short links stay active and keep redirecting to the original URL." } },
-      { "@type": "Question", "name": "Is TheURLShortner free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, TheURLShortner is completely free to shorten URLs and track clicks." } }
+      { "@type": "Question", "name": "Do short links expire?", "acceptedAnswer": { "@type": "Answer", "text": "By default no, your short links stay active and keep redirecting. You can optionally set an expiration of 1 hour, 24 hours, 7 days or 30 days when you create a link, after which it stops redirecting." } },
+      { "@type": "Question", "name": "Can I password-protect a short link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. When shortening, turn on Password protect and set a password. Visitors must enter it before they are forwarded to your destination, and the destination stays hidden until they do." } },
+      { "@type": "Question", "name": "Is TheURLShortner free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, TheURLShortner is completely free to shorten URLs, track clicks, protect links with a password and set expirations." } }
     ]
   }
   </script>
+
+  <section class="cta-band">
+    <h2>Start shortening — free, no signup</h2>
+    <p>Create clean, trackable short links in seconds. Make a free account to manage them all in one dashboard.</p>
+    <div class="cta-actions">
+      <a class="cta-primary" href="#url-input">Shorten a URL</a>
+      <a class="cta-secondary" href="/guides">Browse the guides</a>
+    </div>
+  </section>
 
   </main>
   <footer class="footer">
