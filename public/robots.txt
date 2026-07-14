@@ -1,18 +1,25 @@
+# Standard crawlers (Googlebot, Bingbot, etc.) — crawl all public pages.
+# Only API endpoints and the private dashboard are off-limits.
+# Short links live at the root (/<code>) and are intentionally left crawlable
+# (they are unlinked 302 redirects, not indexable content).
 User-agent: *
-Allow: /$
-Allow: /login
+Allow: /
 Disallow: /api/
 Disallow: /dashboard
 
-# Allow well-known AI / answer-engine crawlers explicitly
+# Well-known AI / answer-engine crawlers — full access (kept as-is).
 User-agent: GPTBot
 Allow: /
+
 User-agent: OAI-SearchBot
 Allow: /
+
 User-agent: PerplexityBot
 Allow: /
+
 User-agent: Google-Extended
 Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
