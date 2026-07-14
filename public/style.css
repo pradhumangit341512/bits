@@ -1323,3 +1323,52 @@ button svg {
   font-size: 0.82rem;
   margin: -0.25rem 0 1.25rem;
 }
+
+/* ---------- Phase 4: accessibility & tap targets ---------- */
+/* Visible keyboard focus (mouse interactions are unaffected). */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible,
+.opt-chip:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Larger, tappable short link in the result card. */
+.short-link {
+  font-size: 1.05rem;
+  padding: 0.3rem 0;
+}
+
+/* Copy button success state (white text on green-700 = AA contrast). */
+#copy-btn.copied {
+  background: #15803d;
+}
+
+/* Comfortable touch targets (>=44px) on mobile. */
+@media (max-width: 720px) {
+  .opt-chip,
+  .nav-links a,
+  .nav-links .btn-link,
+  #shorten-btn,
+  .cta-primary,
+  .cta-secondary,
+  .guide-card {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .guide-card { display: flex; }
+  .faq-item summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .stat .link-btn,
+  .qr-box .link-btn {
+    padding: 0.5rem 0.4rem;
+  }
+}

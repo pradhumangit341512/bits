@@ -11,6 +11,8 @@ const refreshBtn = document.getElementById('refresh-btn');
 const navLinks = document.getElementById('nav-links');
 const qrImg = document.getElementById('qr-img');
 const qrDownload = document.getElementById('qr-download');
+const qrToggle = document.getElementById('qr-toggle');
+const qrBox = document.getElementById('qr-box');
 const togglePassword = document.getElementById('toggle-password');
 const toggleExpiry = document.getElementById('toggle-expiry');
 const passwordField = document.getElementById('password-field');
@@ -108,6 +110,13 @@ form.addEventListener('submit', async (e) => {
     qrDownload.href = qrUrl;
     qrDownload.setAttribute('download', `${data.code}-qr.svg`);
 
+    // Each new link starts with the QR panel collapsed.
+    if (qrBox && qrToggle) {
+      qrBox.hidden = true;
+      qrToggle.setAttribute('aria-expanded', 'false');
+      qrToggle.textContent = 'Show QR code';
+    }
+
     // Summarize any protection/expiry on the new link.
     if (resultMeta) {
       const notes = [];
@@ -139,14 +148,26 @@ form.addEventListener('submit', async (e) => {
 copyBtn.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(shortLink.textContent);
-    copyBtn.textContent = 'Copied!';
+    copyBtn.textContent = 'Copied ✓';
+    copyBtn.classList.add('copied');
     setTimeout(() => {
       copyBtn.textContent = 'Copy';
+      copyBtn.classList.remove('copied');
     }, 1500);
   } catch {
     showError('Could not copy to clipboard.');
   }
 });
+
+// Show / hide the QR code panel.
+if (qrToggle && qrBox) {
+  qrToggle.addEventListener('click', () => {
+    const show = qrBox.hidden;
+    qrBox.hidden = !show;
+    qrToggle.setAttribute('aria-expanded', String(show));
+    qrToggle.textContent = show ? 'Hide QR code' : 'Show QR code';
+  });
+}
 
 refreshBtn.addEventListener('click', async () => {
   if (!currentCode) return;

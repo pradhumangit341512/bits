@@ -96,14 +96,16 @@
           id="url-input"
           type="url"
           inputmode="url"
+          aria-label="Long URL to shorten"
           placeholder="Paste a long URL — https://example.com/very/long/link"
           required
         />
         <div class="custom-row">
-          <span class="custom-prefix" id="custom-prefix">/</span>
+          <span class="custom-prefix" id="custom-prefix" aria-hidden="true">/</span>
           <input
             id="code-input"
             type="text"
+            aria-label="Custom back-half code (optional)"
             placeholder="custom-code (optional)"
             pattern="[A-Za-z0-9\-]{4,30}"
             title="4–30 letters, numbers or dashes"
@@ -115,7 +117,7 @@
           <button type="button" class="opt-chip" id="toggle-expiry" aria-pressed="false" aria-controls="expiry-field">⏳ Set expiration</button>
         </div>
         <div class="opt-field" id="password-field" hidden>
-          <input id="password-input" type="password" maxlength="200" placeholder="Password to open this link (optional)" autocomplete="new-password" />
+          <input id="password-input" type="password" maxlength="200" aria-label="Password to open this link (optional)" placeholder="Password to open this link (optional)" autocomplete="new-password" />
         </div>
         <div class="opt-field" id="expiry-field" hidden>
           <label class="opt-label" for="expiry-select">This link expires:</label>
@@ -133,18 +135,19 @@
 
       <p id="error" class="error" hidden></p>
 
-      <section id="result" class="result" hidden>
+      <section id="result" class="result" hidden aria-live="polite">
         <div class="short-row">
           <a id="short-link" class="short-link" href="#" target="_blank" rel="noopener"></a>
-          <button id="copy-btn" type="button">Copy</button>
+          <button id="copy-btn" type="button" aria-label="Copy short link to clipboard">Copy</button>
         </div>
         <p class="stat">
           <span id="clicks">0 clicks</span>
           <button id="refresh-btn" type="button" class="link-btn">refresh</button>
+          <button id="qr-toggle" type="button" class="link-btn" aria-expanded="false" aria-controls="qr-box">Show QR code</button>
         </p>
         <p id="result-meta" class="result-meta" hidden></p>
-        <div class="qr-box">
-          <img id="qr-img" class="qr-img" alt="QR code for your short link" width="132" height="132" />
+        <div class="qr-box" id="qr-box" hidden>
+          <img id="qr-img" class="qr-img" alt="QR code for your short link" width="160" height="160" />
           <a id="qr-download" class="link-btn" download>Download QR code</a>
         </div>
       </section>
